@@ -1,47 +1,47 @@
-//calendar clock application
+//Calendar Clock Application
 //setup & font
 PFont ft;
 void setup() {
-  size(300,864);
+  size(300, 864);
   frameRate(60);
   smooth();
   noStroke();
   pixelDensity(2);
-  ft = createFont("MANIFESTO",64);
+  ft = createFont("MANIFESTO", 64);
   textFont(ft);
 }
 
 //frame
 void draw() {
-  background(30,60,90);
-  stroke(180,60,60);
-  fill(15,30,60);
-  
+  background(30, 60, 90);
+  stroke(180, 60, 60);
+  fill(15, 30, 60);
+
   //hour
-  ellipse(150,132,125,125);
+  ellipse(150, 132, 125, 125);
   //min
-  ellipse(150,452,125,125);
+  ellipse(150, 452, 125, 125);
   //sec
-  ellipse(150,740,125,125);
+  ellipse(150, 740, 125, 125);
   //month#
-  ellipse(150,295,50,50);
+  ellipse(150, 295, 50, 50);
   //day#
-  ellipse(150,605,50,50);
-  
+  ellipse(150, 605, 50, 50);
+
   rectMode(CENTER);
   //day
-  rect(150,630,170,50);
+  rect(150, 630, 170, 50);
   //month
-  rect(150,320,150,50);
+  rect(150, 320, 150, 50);
   //yr
-  rect(150,35,150,50);
+  rect(150, 35, 150, 50);
   textAlign(CENTER);
   drawType(width*0.25);
 }
 
 //time keeping
 void drawType(float x) {
-  fill(180,60,60);
+  fill(180, 60, 60);
   int yr = year();
   int mt = month();
   int d = day();
@@ -51,69 +51,73 @@ void drawType(float x) {
   //dynamic #
   textSize(54);
   String st = String.valueOf(yr);
-  text(st,150,55);
+  text(st, 150, 55);
   textSize(32);
   st = String.valueOf(mt);
-  text(st,150,305);
+  text(st, 150, 305);
   st = String.valueOf(d);
-  text(st,150,615);
+  text(st, 150, 615);
   textSize(54);
   st = String.valueOf(h);
-  text(st,150,144);
+  text(st, 150, 144);
   st = String.valueOf(m);
-  text(st,150,466);
+  text(st, 150, 466);
   st = String.valueOf(s);
-  text(st,150,754);
+  text(st, 150, 754);
   //static text
-  textAlign(CENTER,CENTER);
+  fill(15, 30, 60);
+  textAlign(CENTER, CENTER);
   textSize(28);
-  text("Seconds",150,825);
-  text("Minutes",150,535);
-  text("Hours",150,215);
-  
+  text("Seconds", 150, 825);
+  text("Minutes", 150, 535);
+  text("Hours", 150, 215);
+
   //#–text conversion
-  
+fill(180, 60, 60);
   //month
   if (mt == 1) {
-    text("January",150,320);
+    text("January", 150, 320);
   }
   if (mt == 2) {
-    text("February",150,320);
+    text("February", 150, 320);
   }
   if (mt == 3) {
-    text("March",150,320);
+    text("March", 150, 320);
   }
   if (mt == 4) {
-    text("April",150,320);
+    text("April", 150, 320);
   }
   if (mt == 5) {
-    text("May",150,320);
+    text("May", 150, 320);
   }
   if (mt == 6) {
-    text("June",150,320);
+    text("June", 150, 320);
   }
   if (mt == 7) {
-    text("July",150,320);
+    text("July", 150, 320);
   }
   if (mt == 8) {
-    text("August",150,320);
+    text("August", 150, 320);
   }
   if (mt == 9) {
-    text("September",150,320);
+    text("September", 150, 320);
   }
   if (mt == 10) {
-    text("October",150,320);
+    text("October", 150, 320);
   }
   if (mt == 11) {
-    text("November",150,320);
+    text("November", 150, 320);
   }
   if (mt == 12) {
-    text("December",150,320);
+    text("December", 150, 320);
   }
-  
+
   //day
   if (d == 3) {
-    text("Saturday",150,630);
+    text("Saturday", 150, 630);
   }
-  //how might I loop the days of the week?
+  if (d == 4) {
+    text("Sunday", 150, 630);
+  }
+  //How might I loop the days of the week?
 }
