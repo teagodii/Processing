@@ -1,7 +1,7 @@
 //Calendar Clock Application
 
-PFont ft;
 //setup & font
+PFont ft;
 void setup() {
   size(300,864);
   frameRate(60);
