@@ -1,0 +1,71 @@
+//productivity timer (15 minutes)
+//setup
+float x = 875;
+PFont ft;
+void setup() {
+  size(200, 875);
+  frameRate(60);
+  ft = createFont("MANIFESTO", 24);
+  textFont(ft);
+}
+//
+void draw() {
+  background(30, 60, 90);
+  
+  //clock
+  loop();
+  x -= 0.0162037037;
+
+  //growth-oriented encouragement
+  fill(15, 30, 60);
+  textAlign(CENTER);
+  textLeading(40);
+  String s = "you are making good progress";
+  text(s, 10, 720, 180, 865);
+  textLeading(50);
+  String si = "positive growth mindset";
+  text(si, 10, 550, 180, 690);
+  String sii = "much attracts more";
+  text(sii, 10, 375, 180, 515);
+  String siii = "enduring pain will gain";
+  text(siii, 10, 200, 180, 340);
+  String siv = "relax & mindfully breathe";
+  text(siv, 10, 25, 180, 165);
+  
+  //markers
+  stroke(180, 60, 60);
+  line(0, 175, 200, 175);
+  line(0, 350, 200, 350);
+  line(0, 525, 200, 525);
+  line(0, 700, 200, 700);
+
+  //timebar
+  noStroke();
+  fill(165, 50, 50, 220);
+  rect(0, 0, 200, x);
+
+  //stop @ 00.00
+  if (x <= 0) {
+    noLoop();
+  } else {
+    loop();
+  }
+}
+
+//console message(s)
+void mouseClicked() {
+  if (x >= 700) {
+    print(" Good Luck (;");
+    noLoop();
+  } else {
+    print("FOCUSFOCUSFOCUS");
+    noLoop();
+  }
+  loop();
+
+  //reset timer
+  if (x <= 0) {
+    redraw();
+    x = 875;
+  }
+}
