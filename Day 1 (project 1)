@@ -1,5 +1,4 @@
-//Calendar Clock Application
-
+//calendar clock application
 //setup & font
 PFont ft;
 void setup() {
@@ -116,5 +115,5 @@ void drawType(float x) {
   if (d == 3) {
     text("Saturday",150,630);
   }
-  //How might I loop the days of the week?
+  //how might I loop the days of the week?
 }
