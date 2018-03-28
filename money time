@@ -1,0 +1,57 @@
+//time is money application
+/*
+how much is your time worth? (e.g. $90/hr)
+watch the money add up over the course of an hour
+timer on the left side
+money counter in the middle
+pay rate on the right side
+1 minute = 360000 millis();
+int tm; //time count
+int pr; //pay rate
+inr mc; // monet counter
+tm = millis()/1000
+pr = 90/60
+mc = pr*tm
+*/
+
+
+PFont ft;
+
+void setup() {
+size(1200,150);
+frameRate(30);
+ft = createFont("OCRAStd", 24);
+textFont(ft);
+}
+
+void draw() {
+background(60,60,30);
+fill(18,120,60);
+
+int tm; //time count
+float prh; // pay rate hour
+float prm; // pay rate minute
+float prs; //pay rate second
+float mc; // monet counter
+
+tm = millis()/1000;
+
+prh = 90;
+prm = prh/60;
+prs = prm/60;
+mc = prs*tm;
+
+textAlign(CENTER);
+//time
+text("SEC  "+tm % 60,300,75);
+text("MIN  "+tm/60,100,75);
+
+//counter
+text("$"+mc,600,75);
+
+//rate
+text("$"+prh,900,75);
+text("   / HOUR",1022,75);
+
+}
+
