@@ -1,0 +1,48 @@
+// 10,000 hours
+// application to log hours worked on certain tasks.
+
+PFont ft;
+float x,y;
+float xspeed, yspeed;
+
+void setup () {
+  background(100,80,10);
+size (1200,600);
+frameRate(60);
+smooth();
+pixelDensity(2);
+ft = createFont("OCRAStd", 600);
+textFont(ft);
+textAlign(CENTER,CENTER);
+xspeed = 6;
+yspeed = 9;
+}
+
+void draw() {
+
+noStroke();
+
+// hour count display
+fill(100,100,100,150);
+text("4",width-200,height/2);
+
+// ball bounce binsabo
+fill(100,10,100,150);
+
+ellipse(x,y,36,36);
+
+x = x + xspeed;
+y = y + yspeed;
+
+if (x > width || x < 0) {
+xspeed = xspeed * -1;
+}
+
+
+if(y > height || y < 0) {
+yspeed = yspeed * -1;
+}
+/*
+*/
+
+}
