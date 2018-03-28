@@ -1,0 +1,317 @@
+// variable
+int rectXi;
+int rectYi, rectYii, rectYiii, rectYiv, rectYv;
+int rectWi, rectWii;
+int rectH;
+boolean rectOverI = false;
+boolean rectOverII = false;
+boolean rectOverIII = false;
+boolean rectOverIV = false;
+boolean rectOverV = false;
+float xi = 200.0;
+float yi = 200.0;
+float op = 200.0;
+float og = 200.0;
+float e = 200.0;
+float o = 100;
+int X_AXIS = 2;
+color c1, c2, baseColor, currentColor, rectHighlight;
+PFont pf;
+
+void setup() {
+  size(800, 875);
+  pixelDensity(2);
+  smooth();
+  pf = createFont("MANIFESTO", 36);
+  frameRate(30);
+  textFont(pf);
+  c1 = color(100, 100, 5);
+  c2 = color(50, 5, 10);
+
+  //buttonPressed
+  baseColor = color(0);
+  rectHighlight = color(99);
+
+  rectXi = 0;
+  rectYi = 0;
+  rectYii = 175;
+  rectYiii = 350;
+  rectYiv = 525;
+  rectYv = 700;
+
+  rectWi = 200;
+  rectWii = 15;
+  rectH = 175;
+}
+
+void draw() {
+  update(mouseX, mouseY, pmouseX, pmouseY);
+
+  xi = xi + 1;
+  yi += 10.50;
+  op += 100.00;
+  og += 10.50;
+  e += 1.00;
+  o -= 0.50;
+
+  background(100, 100, 5);
+  //task box
+  stroke(50, 5, 10);
+  fill(50, 5, 10, o);
+  rect(0, 0, rectWi, rectH);
+  rect(0, 175, rectWi, rectH);
+  rect(0, 350, rectWi, rectH);
+  rect(0, 525, rectWi, rectH);
+  rect(0, 700, rectWi, rectH); 
+
+  //task box buttons
+  fill(rectHighlight);
+  
+  //button highlight
+
+  if (rectOverI == true) {
+    fill(baseColor);
+  } else {
+    fill(rectHighlight);
+  }
+ /* 
+  if (rectOverII == true) {
+    fill(rectHighlight);   
+  } else {
+    fill(baseColor);
+  }
+  
+  if (rectOverIII == true) {
+    fill(rectHighlight);   
+  } else {
+    fill(baseColor);
+  }
+  
+  if (rectOverIV == true) {
+    fill(rectHighlight);   
+  } else {
+    fill(baseColor);
+  }
+  
+  if (rectOverV == true) {
+    fill(rectHighlight);   
+  } else {
+    fill(baseColor);
+  }
+  */
+  rect(rectXi, rectYi, rectWii, rectH);
+  rect(rectXi, rectYii, rectWii, rectH);
+  rect(rectXi, rectYiii, rectWii, rectH);
+  rect(rectXi, rectYiv, rectWii, rectH);
+  rect(rectXi, rectYv, rectWii, rectH);
+
+  //legend
+  fill(50, 5, 10, o);
+  setGradient(200, 0, 800, 25, c1, c2, X_AXIS);
+  rect(200, 0, 200, 25);
+  rect(400, 0, 200, 25);
+  rect(600, 0, 200, 25);
+
+  //dynamic progress bar
+  setGradient(200, 25, 800, 150, c1, c2, X_AXIS);
+  setGradient(200, 175, 800, 175, c1, c2, X_AXIS);
+  setGradient(200, 350, 800, 175, c1, c2, X_AXIS);
+  setGradient(200, 525, 800, 175, c1, c2, X_AXIS);
+  setGradient(200, 700, 800, 175, c1, c2, X_AXIS);
+  noStroke();
+  fill(50, 5, 10, 100);
+  rect(xi, 25, 800, 150);
+  rect(yi, 175, 800, 175);
+  rect(op, 350, 800, 175);
+  rect(og, 525, 800, 175);
+  rect(e, 700, 800, 175);
+
+  //fullscreen overlay
+  fill(255, 127, 80, 60);
+  rect(0, 0, 800, 875);
+
+  //legend text
+  textSize(18);
+  fill(150, 150, 150);
+  String ti = "In Progress";
+  text(ti, 235, 3, 275, 25);
+  String tii = "Under Review";
+  text(tii, 425, 3, 475, 25);
+  String tiii = "Completed";
+  text(tiii, 635, 3, 675, 25);
+
+
+  textSize(36); 
+
+  //completion badge & halt
+  if (xi >= 800) {
+    fill(150, 150, 150);
+    String tv = "DONE";
+    text(tv, 40, 65, 150, 85);
+    noLoop();
+  }
+
+  if (yi >= 800) {
+    fill(150, 150, 150);
+    String tv = "DONE";
+    text(tv, 40, 240, 150, 250);
+    noLoop();
+  }
+
+  if (op >= 800) {
+    fill(150, 150, 150);
+    String tv = "DONE";
+    text(tv, 40, 415, 150, 430);
+    noLoop();
+  }
+
+  if (og >= 800) {
+    fill(150, 150, 150);
+    String tv = "DONE";
+    text(tv, 40, 590, 150, 615);
+    noLoop();
+  }
+
+  if (e >= 800) {
+    fill(150, 150, 150);
+    String tv = "DONE";
+    text(tv, 40, 765, 150, 780);
+    noLoop();
+  }
+
+
+  //task box fade halt
+  if (o <= 0) {
+    noLoop();
+  }
+  loop();
+}
+
+
+void update(int rectXi, int rectWii, int rectYi, int rectH) {
+  if (overRectI(rectXi, rectWii, rectYi, rectH) ) {
+    rectOverI = true;
+    rectOverII = false;
+    rectOverIII = false;
+    rectOverIV = false;
+    rectOverV = false;
+  } else {
+    rectOverI = rectOverII = rectOverIII = rectOverIV = rectOverV = false;
+  }
+}
+/*
+void updateI(int rectXi, int rectWii, int rectYii, int rectH) {
+  if (overRectII(rectXi, rectWii, rectYii, rectH) ) {
+    rectOverI = false;
+    rectOverII = true;
+    rectOverIII = false;
+    rectOverIV = false;
+    rectOverV = false;
+  } else {
+  rectOverI = rectOverII = rectOverIII = rectOverIV = rectOverV = false;
+  }
+}
+void updateII(int rectXi, int rectWii, int rectYiii, int rectH) {
+  if (overRectIII(rectXi, rectWii, rectYiii, rectH) ) {
+    rectOverI = false;
+    rectOverII = false;
+    rectOverIII = true;
+    rectOverIV = false;
+    rectOverV = false;
+  } else {
+  rectOverI = rectOverII = rectOverIII = rectOverIV = rectOverV = false;
+  }
+}  
+void updateIII(int rectXi, int rectWii, int rectYiv, int rectH) {
+  if (overRectIV(rectXi, rectWii, rectYiv, rectH) ) {
+    rectOverI = false;
+    rectOverII = false;
+    rectOverIII = false;
+    rectOverIV = true;
+    rectOverV = false;
+  } else {
+  rectOverI = rectOverII = rectOverIII = rectOverIV = rectOverV = false;
+  }
+}
+void updateIV(int rectXi, int rectWii, int rectYv, int rectH) {
+  if (overRectV(rectXi, rectWii, rectYv, rectH) ) {
+    rectOverI = false;
+    rectOverII = false;
+    rectOverIII = false;
+    rectOverIV = false;
+    rectOverV = true;
+  } else {
+    rectOverI = rectOverII = rectOverIII = rectOverIV = rectOverV = false;
+  }
+}
+*/
+
+/*
+//button color action
+void mousePressed() {
+  if (rectOverI) {
+    currentColor = baseColor;
+  }
+}
+*/
+
+//boolean strings
+boolean overRectI(int rectXi, int rectWii, int rectYi, int rectH) {
+  if (mouseX >= rectXi || mouseX <= rectXi+rectWii &&
+    mouseY >= rectYi || mouseY <= rectYi+rectH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+/*
+boolean overRectII(int rectXi, int rectWii, int rectYii, int rectH) {
+  if (mouseX >= rectXi && mouseX <= rectWii &&
+    mouseY >= rectYii && mouseY == rectH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overRectIII(int rectXi, int rectWii, int rectYiii, int rectH) {
+  if (mouseX >= rectXi && mouseX <= rectWii &&
+    mouseY >= rectYiii && mouseY == rectH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overRectIV(int rectXi, int rectWii, int rectYiv, int rectH) {
+  if (mouseX >= rectXi && mouseX <= rectWii &&
+    mouseY >= rectYiv && mouseY <= rectH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overRectV(int rectXi, int rectWii, int rectYv, int rectH) {
+  if (mouseX >= rectXi && mouseX <= rectWii &&
+    mouseY >= rectYv && mouseY <= rectH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+*/
+
+void setGradient(int x, int y, float w, float h, color c1, color c2, int axis ) {
+
+  noFill();
+
+  if (axis == X_AXIS) {  // Left to right gradient
+    for (int i = x; i <= x+w; i++) {
+      float inter = map(i, x, x+w, 0, 1);
+      color c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(i, y, i, y+h);
+    }
+  }
+}
