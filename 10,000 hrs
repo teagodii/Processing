@@ -1,48 +1,114 @@
 // 10,000 hours
-// application to log hours worked on certain tasks.
 
 PFont ft;
-float x,y;
-float xspeed, yspeed;
+float x, xi, xii, xiv, y, yi, yii, yiv, o;
+float xspeed, xispeed, xiispeed, xivspeed, yspeed, yispeed, yiispeed, yivspeed;
+int timeC;
+float rari, rara, raro;
 
 void setup () {
-  background(100,80,10);
-size (1200,600);
-frameRate(60);
-smooth();
-pixelDensity(2);
-ft = createFont("OCRAStd", 600);
-textFont(ft);
-textAlign(CENTER,CENTER);
-xspeed = 6;
-yspeed = 9;
+  //fullScreen ();
+  size(1200, 600);
+  smooth();
+  pixelDensity(2);
+  ft = createFont("OCRAStd", 450);
+  textFont(ft);
+  textAlign(CENTER, CENTER);
+  xspeed = 6;
+  yspeed = 9;
+  xispeed = 6;
+  yispeed = 9; 
+  xiispeed = 6;
+  yiispeed = 9;
+  xivspeed = 6;
+  yivspeed = 9;
+  o = 9;
+  timeC = 18;
+
+  yi = height;
+  xii = width;
+  xiv = width;
+  yiv = height;
+  
+  background(120, 90, 60);
 }
 
 void draw() {
+  noStroke();
+  fill(90, 30, 30, 3);
+  text(""+timeC, width/2, height/2);
+  
+  // color range
+  rari = random(60,90);
+  rara = random(30);
+  raro = random(90);
 
-noStroke();
+  // hour ball I
+  fill(rara, raro, rari);
+  ellipse(x, y, o, o);
 
-// hour count display
-fill(100,100,100,150);
-text("4",width-200,height/2);
+  // hour ball II
+  fill(rari, raro, rari);
+  ellipse(xi, yi, o, o);
 
-// ball bounce binsabo
-fill(100,10,100,150);
+  // hour ball III
+  fill(raro, rari, rara);  
+  ellipse(xii, yii, o, o);
 
-ellipse(x,y,36,36);
+  // hour ball IV
+  fill(rari, rara, rara);    
+  ellipse(xiv, yiv, o, o);
 
-x = x + xspeed;
-y = y + yspeed;
+  // rate of movement
+  x = x + xspeed;
+  y = y + yspeed;
+  xi = xi + xispeed;
+  yi = yi + yispeed; 
+  xii = xii + xiispeed;
+  yii = yii + yiispeed;
+  xiv = xiv + xivspeed;
+  yiv = yiv + yivspeed;
 
-if (x > width || x < 0) {
-xspeed = xspeed * -1;
+  // border walls
+  if (x > width || x < width-width) {
+    xspeed = xspeed * -1;
+  } 
+  if (y > height || y < height-height) {
+    yspeed = yspeed * -1;
+  }
+
+  if (xi > width || xi < width-width) {
+    xispeed = xispeed * -1;
+  } 
+  if (yi > height || yi < height-height) {
+    yispeed = yispeed * -1;
+  }
+
+  if (xii > width || xii < width-width) {
+    xiispeed = xiispeed * -1;
+  } 
+  if (yii > height || yii < height-height) {
+    yiispeed = yiispeed * -1;
+  }
+
+  if (xiv > width || xiv < width-width) {
+    xivspeed = xivspeed * -1;
+  } 
+  if (yiv > height || yiv < height-height) {
+    yivspeed = yivspeed * -1;
+  }
 }
 
-
-if(y > height || y < 0) {
-yspeed = yspeed * -1;
-}
-/*
-*/
-
+// hour update
+void keyReleased() {
+  if (key == '=' || key == '+') {
+    background(120, rari, raro);
+    fill(rari, raro, rara);
+    timeC += 1;
+    text(""+timeC, width/2, height/2);
+  } else if (key == '-') {
+    background(120, rari, raro);
+    fill(rari, raro, rara);
+    timeC -= 1;
+  }
 }
